@@ -1,0 +1,25 @@
+# Barcode OCR (Character Recognition only) | CNN - biLSTM - CTC | PyTorch, Lightning, ClearML
+
+______________________________________________________________________
+
+## Getting started
+
+1. Follow [instructions](https://github.com/python-poetry/install.python-poetry.org) to install Poetry. Check that poetry was installed successfully:
+   ```bash
+   poetry --version
+   ```
+1. Setup workspace.
+   - Unix:
+   ```bash
+   make setup_ws
+   ```
+   - Windows:
+   ```bash
+   make setup_ws PYTHON_EXEC=<path_to_your_python_3.10_executable>
+   ```
+1. Activate poetry virtual environment
+   ```bash
+   poetry shell
+   ```
+
+______________________________________________________________________

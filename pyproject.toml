@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "barcodes-ocr"
+version = "0.1.0"
+description = ""
+authors = ["vladimir-sashin <sashin.v.a@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.CI.dependencies]
+wemake-python-styleguide = "^0.19.2"
+pre-commit = "^3.7.0"
+
+
+[tool.vulture]
+min_confidence = 80
+paths = ["source"]
+ignore_names = ["args", "kwargs", "batch_idx"]
+sort_by_size = true
+verbose = false
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
