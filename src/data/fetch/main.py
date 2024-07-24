@@ -26,7 +26,6 @@ def fetch_raw_dataset(cfg: BarcodesDataConfig) -> None:
             cml_dataset_name,
             cfg.clearml_cfg.project_name,
             unzipped_data_dir,
-            cfg.clearml_cfg.description,
         )
         handle_tmp_dir(unzipped_data_dir, cfg.clearml_cfg.keep_local_copy)
 

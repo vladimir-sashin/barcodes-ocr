@@ -10,6 +10,9 @@ python = "^3.10"
 clearml = "^1.16.2"
 pydantic = "^2.8.2"
 omegaconf = "^2.3.0"
+pandas = "^2.2.2"
+numpy = "^2.0.1"
+opencv-python = "^4.10.0.84"
 
 [tool.poetry.group.CI.dependencies]
 wemake-python-styleguide = "^0.19.2"
@@ -19,6 +22,7 @@ pre-commit = "^3.7.0"
 
 [tool.poetry.group.data.dependencies]
 gdown = "^5.2.0"
+scikit-learn = "^1.5.1"
 
 [tool.vulture]
 min_confidence = 80

@@ -35,3 +35,5 @@ class SplitNames(NamedTuple):
 
 SPLITS = SplitNames('train', 'val', 'test')
 DEFAULT_SPLIT_RATIO_VALS = (0.7, 0.15, 0.15)
+
+FILENAME_COL = 'filename'

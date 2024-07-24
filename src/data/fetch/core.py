@@ -4,17 +4,22 @@ from pathlib import Path
 import gdown
 
 from src.constants import PROJECT_ROOT
-from src.data.fetch.logger import LOGGER
+from src.data.logger import LOGGER
 
 
 def unzip_raw_dataset(zip_path: Path, output_dir: Path) -> Path:
     output_dir_relative = output_dir.relative_to(PROJECT_ROOT)
     LOGGER.info('Unpacking raw dataset %s to %s...', zip_path.relative_to(PROJECT_ROOT), output_dir_relative)
     output_dir.parent.mkdir(exist_ok=True, parents=True)
+
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         zip_ref.extractall(output_dir)
-    LOGGER.info('Dataset is successfully unpacked to %s.', output_dir_relative)
+    unzipped_path = next(output_dir.iterdir())
+    for unzipped_file in unzipped_path.rglob('*'):
+        unzipped_file.rename(output_dir / unzipped_file.name)
 
+    LOGGER.info('Dataset is successfully unpacked to %s.', output_dir_relative)
+    unzipped_path.rmdir()
     zip_path.unlink()
     return output_dir
 

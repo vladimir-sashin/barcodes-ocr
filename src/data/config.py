@@ -1,6 +1,5 @@
 import os
 from dataclasses import dataclass
-from typing import Optional
 
 from pydantic import Field
 
@@ -33,7 +32,6 @@ class SplitConfig(BaseValidatedConfig):
 class ClearMLConfig(BaseValidatedConfig):
     project_name: str = 'Barcodes detection'
     keep_local_copy: bool = False
-    description: Optional[str] = None
 
 
 class BarcodesDataConfig(BaseValidatedConfig, ConfigYamlMixin):
