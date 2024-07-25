@@ -33,7 +33,7 @@ pre_commit_install:
 	poetry run pre-commit install
 
 setup_ws:
-	$(MAKE) install_venv $(PYTHON_EXEC)
+	$(MAKE) install_venv
 	$(MAKE) pre_commit_install
 
 
@@ -48,3 +48,9 @@ prep_data:
 run_data_pipe:
 	$(MAKE) fetch_data
 	$(MAKE) prep_data
+
+
+# ================== CONTINUOUS INTEGRATION =================
+
+ci_static_code_analysis:
+	poetry run python -m pre_commit run --all-files
