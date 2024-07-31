@@ -1,13 +1,10 @@
 from src.constants import StorageEnum
 from src.data.clearml_utils import create_dataset_task
 from src.data.config import BarcodesDataConfig, get_data_config
-from src.data.dir_utils import (
-    get_prepared_data_dir,
-    get_prepared_ds_name,
-    get_raw_ds_name,
-)
+from src.data.dir_utils import get_prepared_ds_name, get_raw_ds_name
 from src.data.prep.core.pipe import prepare_data, prepare_data_from_cml
 from src.data.prep.dir_utils import get_local_raw_dataset
+from src.dir_utils import get_prepared_data_dir
 
 
 def preprocess_data(cfg: BarcodesDataConfig) -> None:

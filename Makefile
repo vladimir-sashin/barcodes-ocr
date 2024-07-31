@@ -23,7 +23,7 @@ endif
 install_venv:
 	@echo "=== Installing project dependencies ==="
 	poetry env use $(PYTHON_EXEC)
-	poetry install --with CI
+	poetry install --with CI,data,notebooks
 	@echo "Virtual environment has been created."
 	@echo "Path to virtual environment:"
 	poetry env info -p
@@ -48,6 +48,17 @@ prep_data:
 run_data_pipe:
 	$(MAKE) fetch_data
 	$(MAKE) prep_data
+
+
+# ================== TRAINING AND EVALUATION ==================
+run_train_eval:
+	poetry run python -m src.train.main
+
+
+# ======== E2E DATA + TRAINING AND EVALUATION PIPELINE =======
+run_e2e_pipeline:
+	$(MAKE) run_data_pipe
+	$(MAKE) run_train_eval
 
 
 # ================== CONTINUOUS INTEGRATION =================

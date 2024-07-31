@@ -5,8 +5,12 @@ import cv2
 import numpy as np
 import pandas as pd
 
-from src.data.constants import FILENAME_COL
-from src.data.logger import LOGGER
+from src.constants import (  # noqa: I001 # flake8 FP
+    FILENAME_COL,
+    PREP_IMAGES_FOLDER,
+    PREP_LABELS_FILENAME,
+)
+from src.data.logger import LOGGER  # noqa: I005 # flake8 FP
 
 
 def crop_splits(splits_df: pd.DataFrame, input_data_dir: Path, output_dir: Path) -> None:
@@ -22,7 +26,7 @@ def crop_splits(splits_df: pd.DataFrame, input_data_dir: Path, output_dir: Path)
 
 def _crop_barcodes_in_split(split_df: pd.DataFrame, input_data_dir: Path, output_dir: Path, split: str) -> None:
     output_split_dir = output_dir / split
-    output_images_dir = output_split_dir / 'data'
+    output_images_dir = output_split_dir / PREP_IMAGES_FOLDER
 
     output_split_dir.mkdir(parents=True, exist_ok=True)
     output_images_dir.mkdir(parents=True, exist_ok=True)
@@ -33,7 +37,7 @@ def _crop_barcodes_in_split(split_df: pd.DataFrame, input_data_dir: Path, output
 
     output_df = split_df.assign(filename=split_df[FILENAME_COL].apply(_get_file_name))
     output_df = output_df.drop_duplicates(subset=[FILENAME_COL])
-    output_df.to_csv(output_split_dir / 'annotations.csv')
+    output_df.to_csv(output_split_dir / PREP_LABELS_FILENAME)
 
 
 def _get_file_name(filepath: str) -> str:

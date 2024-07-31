@@ -3,10 +3,8 @@ from pathlib import Path
 
 from src.data.constants import (
     PREPARED_DATASET_PREFIX,
-    PREPARED_DATASETS,
     RAW_DATASET_PREFIX,
     RAW_DATASETS,
-    TMP_PREPARED_DATASETS,
     TMP_RAW_DATASETS,
 )
 
@@ -28,9 +26,3 @@ def get_raw_data_dir(dataset_name: str, tmp: bool = False) -> Path:
 
 def get_prepared_ds_name(dataset_name: str) -> str:
     return f'{PREPARED_DATASET_PREFIX}{dataset_name}'
-
-
-def get_prepared_data_dir(dataset_name: str, tmp: bool) -> Path:
-    if tmp:
-        return TMP_PREPARED_DATASETS / dataset_name
-    return PREPARED_DATASETS / dataset_name
