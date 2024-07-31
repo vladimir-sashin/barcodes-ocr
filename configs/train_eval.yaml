@@ -1,0 +1,80 @@
+datamodule_cfg:
+  data_source_cfg:
+    storage: clearml  # or local
+    dataset_name: barcodes
+    clearml_storage_cfg:  # Ignored if storage==local, optional for storage==clearml
+      project_name: Barcodes OCR
+      dataset_version: null
+  data_cfg:
+    batch_size: 48
+    num_iterations: 100
+    n_workers: 4
+    width: 352
+    height: 96
+    vocab: '0123456789'
+    text_size: 13
+
+clearml_cfg:
+  project_name: Barcodes OCR
+  experiment_name: ResNet GRU baseline
+  track_in_clearml: true
+
+random_seed: 0
+
+trainer_cfg:
+  fast_dev_run: false
+  min_epochs: 1
+  max_epochs: 50
+  check_val_every_n_epoch: 1
+  log_every_n_steps: 30
+  gradient_clip_val: null
+  gradient_clip_algorithm: null
+  deterministic: false
+  detect_anomaly: false
+
+visualization_cfg:
+  batches:
+    every_n_epochs: 10
+    log_k_images: 16
+  preds:
+    every_n_epochs: 1
+    log_k_images: 32
+
+lightning_module_cfg:
+  backbone_cfg:
+    backbone_name: resnet18
+    pretrained: true
+    cnn_output_size: 128
+    output_stride: 8
+    out_indices:
+      - 2
+  rnn_cfg:
+    target_model_class: torch.nn.GRU
+    input_size: 576
+    features_num: 48
+    hidden_size: 64
+    dropout: 0.1
+    bidirectional: true
+    num_layers: 2
+    num_classes: 11
+  optimizer:
+    target_class: torch.optim.AdamW
+    kwargs:
+      lr: 1e-3
+      weight_decay: 1e-5
+  scheduler:
+    target_class: torch.optim.lr_scheduler.ReduceLROnPlateau
+    kwargs:
+      mode: min
+      factor: 0.5
+      patience: 25
+      min_lr: 1e-5
+    lightning_kwargs:
+      monitor: ctc_loss/valid
+      interval: epoch
+      frequency: 1
+  losses:
+    - name: ctc
+      weight: 1.0
+      target_class: torch.nn.CTCLoss
+      kwargs: {}
