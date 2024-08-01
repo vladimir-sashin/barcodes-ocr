@@ -1,6 +1,8 @@
 # Barcode OCR (Character Recognition only) | CRNN (CNN - RNN - CTC loss) | PyTorch, Lightning, ClearML
 
+[![PyTorch Lightning](https://img.shields.io/badge/pytorch-lightning-blue.svg?logo=PyTorch%20Lightning)](https://github.com/Lightning-AI/lightning)
 <a href="https://clear.ml/docs/latest/"><img alt="ClearML" src="https://img.shields.io/badge/MLOps-Clear%7CML-%2309173c"></a>
+[![Build](https://github.com/vladimir-sashin/barcodes-ocr/actions/workflows/ci.yaml/badge.svg)](https://github.com/vladimir-sashin/barcodes-ocr/actions/workflows/ci.yaml)
 
 This repo is capable of training, validation and export to ONNX of a configurable RCNN PyTorch model using Lightning and ClearML to perform barcodes character recognition task.
 
@@ -23,7 +25,7 @@ This repo is capable of training, validation and export to ONNX of a configurabl
 1. Barcode OCR dataset preprocessing pipeline, featuring data versioning in ClearML.
 1. CI that runs static code analysis configured in `pre-commit.yaml` (tests are WIP).
 
-Check out the example of RCNN barcode OCR model training experiment in ClearML.
+Check out [the example of RCNN barcode OCR model training experiment in ClearML](https://app.clear.ml/projects/bdaa6ff4bfd34485a3acb7dde79f62e5/experiments/5a54c02c92eb48cdbe85bd1f20c1f236/output/execution).
 
 ______________________________________________________________________
 
@@ -93,8 +95,7 @@ ______________________________________________________________________
 
 # Acknowledgments
 
-1. Firstly, thanks a lot to the authors of the amazing RT DETR architecture, that is so fast and well-performing that I managed to train a decent model on CPU in just a few hours using a small dataset.
-1. Secondly, shoutout to the team of [DeepShchool's](https://deepschool.ru/) [CV Rocket course](https://deepschool.ru/cvrocket), where I (hopefully) learned best practices of ML development and ClearML experiment tracking. BTW this is one of the course's graduation projects :)
+Shoutout to the team of [DeepShchool's](https://deepschool.ru/) [CV Rocket course](https://deepschool.ru/cvrocket), where I (hopefully) learned best practices of ML development and ClearML experiment tracking. BTW this is one of the course's graduation projects :)
 
 ______________________________________________________________________
 
